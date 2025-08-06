@@ -1,0 +1,19 @@
+# Python
+env/
+__pycache__/
+*.py[cod]
+*.env
+
+# Node / React
+frontend/node_modules/
+frontend/build/
+
+# Bases de datos
+*.db
+
+# VSCode
+.vscode/
+
+# Docker
+docker-compose.override.yml
+.env
