@@ -1,0 +1,38 @@
+# .github/workflows/deploy-backend.yml
+name: Deploy FastAPI to AppRunner
+on:
+  push:
+    paths:
+      - "backend/**"
+      - "requirements.txt"
+      - ".github/workflows/deploy-backend.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: aws-actions/configure-aws-credentials@v3
+      with:
+        role-to-assume: arn:aws:iam::<ACCOUNT_ID>:role/GitHubActionsDeploy
+        aws-region: us-east-1
+
+    - uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Build & push backend image
+      env:
+        ECR_REPO: ahorro-api
+        ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      run: |
+        IMAGE="$ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPO:latest"
+        docker build -t $IMAGE ./backend
+        docker push $IMAGE
+
+    - name: Trigger App Runner deployment
+      run: |
+        aws apprunner start-deployment \
+          --service-arn arn:aws:apprunner:us-east-1:$ACCOUNT_ID:service/ahorro-api/<SERVICE_ID>

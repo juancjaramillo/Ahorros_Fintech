@@ -1,102 +1,102 @@
-# Fintech Savings App
+# Aplicación de Ahorros Fintech
 
-## Table of Contents
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Setup & Local Development](#setup--local-development)
+## Índice
+- [Visión general](#visión-general)
+- [Arquitectura](#arquitectura)
+- [Instalación y desarrollo local](#instalación-y-desarrollo-local)
   - [Backend](#backend)
   - [Frontend](#frontend)
-  - [Database Seeding](#database-seeding)
-- [Deployment](#deployment)
+  - [Población de la base de datos](#población-de-la-base-de-datos)
+- [Despliegue](#despliegue)
   - [Docker](#docker)
   - [AWS CI/CD](#aws-cicd)
-- [Screenshots](#screenshots)
+- [Capturas de pantalla](#capturas-de-pantalla)
 
-## Overview
-This project implements a savings account management system with separate **backend** (FastAPI + SQLite/Postgres-ready) and **frontend** (React).
-- **Admin** can create clients, accounts, and view all transactions.
-- **Clients** can view their accounts, deposit, and withdraw funds.
+## Visión general
+Esta aplicación gestiona cuentas de ahorro mediante un sistema con frontend (React) y backend (FastAPI + SQLite/PostgreSQL).  
+- **Admin** puede crear clientes, cuentas y ver todas las transacciones.  
+- **Clientes** pueden ver sus cuentas, consignar y retirar fondos.
 
-## Architecture
+## Arquitectura
 
-```mermaid
+\`\`\`mermaid
 flowchart TD
-  subgraph Frontend [React App]
-    A[Landing Page] -->|Login| B(AdminLogin)
-    A -->|Login| C(ClientLogin)
-    B --> D(AdminDashboard)
-    C --> E(ClientDashboard)
+  subgraph Frontend [App React]
+    A[Landing] -->|Login| B(Ingreso Admin)
+    A -->|Login| C(Ingreso Cliente)
+    B --> D(Dashboard Admin)
+    C --> E(Dashboard Cliente)
   end
 
-  subgraph Backend [FastAPI]
-    D -->|API calls| F[/auth/login]
-    D -->|Manage| G[/users/]
-    D -->|Manage| H[/accounts/]
-    D -->|Manage| I[/transactions/]
-    E -->|API calls| F
-    E -->|Fetch| H
-    E -->|Fetch| I
+  subgraph Backend [API FastAPI]
+    D -->|API| F[/auth/login]
+    D -->|Gestiona| G[/users/]
+    D -->|Gestiona| H[/accounts/]
+    D -->|Gestiona| I[/transactions/]
+    E -->|API| F
+    E -->|Consulta| H
+    E -->|Consulta| I
   end
 
   F --> J[(SQLite / PostgreSQL)]
   H --> J
   I --> J
-```
+\`\`\`
 
-## Setup & Local Development
+## Instalación y desarrollo local
 
 ### Backend
-```bash
+\`\`\`bash
 cd backend
 python -m venv env
-env\Scripts\activate      # Windows
-# or source env/bin/activate  # Linux/macOS
+# Linux/macOS:
+source env/bin/activate
+# Windows:
+# env\Scripts\activate
 pip install -r requirements.txt
 uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
-```
+\`\`\`
 
 ### Frontend
-```bash
+\`\`\`bash
 cd frontend
 npm install
 npm start
-```
-Open [http://localhost:3000](http://localhost:3000).
+\`\`\`
+Abre [http://localhost:3000](http://localhost:3000).
 
-### Database Seeding
-```bash
-# from project root
-env\Scripts\activate
+### Población de la base de datos
+\`\`\`bash
+# desde la raíz del proyecto
+# Linux/macOS:
+source backend/env/bin/activate
+# Windows:
+# env\Scripts\activate
 python -m backend.seed
-```
+\`\`\`
 
-## Deployment
+## Despliegue
 
 ### Docker
-1. **Build images**:
-   ```bash
+1. Construir imágenes:
+   \`\`\`bash
    docker build -f backend/Dockerfile -t fintech-backend .
    docker build -f frontend/Dockerfile -t fintech-frontend .
-   ```
-2. **Run containers**:
-   ```bash
+   \`\`\`
+2. Ejecutar contenedores:
+   \`\`\`bash
    docker network create fintech-net
    docker run -d --name backend --network fintech-net fintech-backend
    docker run -d --name frontend -p 80:3000 --network fintech-net fintech-frontend
-   ```
+   \`\`\`
 
 ### AWS CI/CD
-We recommend using **GitHub Actions** to:
-1. Build Docker images.
-2. Push to **Amazon ECR**.
-3. Deploy to **Amazon ECS** or **AWS App Runner**.
-4. Configure an **Application Load Balancer** and **Route 53** DNS.
+Se recomienda usar **GitHub Actions** para:
+1. Construir las imágenes Docker.  
+2. Subirlas a **Amazon ECR**.  
+3. Desplegar en **AWS ECS** o **AWS App Runner**.  
+4. Configurar **ALB** y **Route 53** para DNS.
 
-## Screenshots
-
-### Admin Dashboard
-![Admin Dashboard](./screenshots/admin_dashboard.png)
-
-### Client Dashboard
-![Client Dashboard](./screenshots/client_dashboard.png)
-
+## Capturas de pantalla
+![Dashboard Admin](./screenshots/admin_dashboard.png)
+![Dashboard Cliente](./screenshots/client_dashboard.png)
