@@ -2,12 +2,31 @@ version: "3.9"
 services:
   backend:
     build: ./backend
+    container_name: ahorro-api
+    env_file: ./backend/.env
+    restart: always
     ports:
       - "8000:8000"
-    env_file: .env
+
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile.front  # si tienes uno
+      dockerfile: Dockerfile.front      # lo crearás más abajo
+    container_name: ahorro-ui
+    environment:
+      - REACT_APP_API_URL=http://localhost/api
+    command: sh -c "npm ci && npm run build && npx serve -s build -l 3000"
+    restart: always
     ports:
       - "3000:3000"
+
+  nginx:
+    image: nginx:alpine
+    container_name: ahorro-proxy
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+      - frontend
+    ports:
+      - "80:80"
