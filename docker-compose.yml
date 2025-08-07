@@ -1,17 +1,30 @@
-version: "3.9"
 services:
   backend:
-    image: juancjaramillo/ahorro-backend:latest
-    env_file: backend/.env               
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: ahorro-api
+    restart: always
+    environment:
+      - DATABASE_URL=sqlite:////data/ahorros.db
+      - SECRET_KEY=gbP95kts-z2j1sGq_wp5aZfxvBPnImS8xcp4Wnn0Jd8
     volumes:
-      - ./ahorros.db:/data/ahorros.db    
-    restart: always
-    ports:
-      - "8000:8000"
+      - db-data:/data
+    networks: [ web ]
 
-  frontend:
-    image: juancjaramillo/ahorro-frontend:latest
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    container_name: ahorro-web
     restart: always
-    depends_on: [backend]
+    depends_on: [ backend ]
     ports:
       - "80:80"
+    networks: [ web ]
+
+volumes:
+  db-data:
+
+networks:
+  web:
