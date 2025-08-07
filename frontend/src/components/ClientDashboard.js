@@ -1,6 +1,6 @@
 // ClientDashboard.js
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import axios from "axios";
+import { api } from "../api"; 
 import AccountList from "./AccountList";
 import TransactionList from "./TransactionList";
 
@@ -19,8 +19,8 @@ export default function ClientDashboard() {
   const fetchData = useCallback(async () => {
     try {
       const [aRes, tRes] = await Promise.all([
-        axios.get("/accounts/",      cfg),
-        axios.get("/transactions/me", cfg)
+        api.get("/accounts/",      cfg),
+        api.get("/transactions/me", cfg)
       ]);
       setAccounts(aRes.data);
       setTxs(tRes.data);
