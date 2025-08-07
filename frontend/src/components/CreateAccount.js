@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { api } from '../api';
 
 export default function CreateAccount({
   clientId,
@@ -17,7 +17,7 @@ export default function CreateAccount({
     e.preventDefault();
     setErr('');
     try {
-      await axios.post(
+      await api.post(
         '/accounts/',
         {
           account_name: accountName,

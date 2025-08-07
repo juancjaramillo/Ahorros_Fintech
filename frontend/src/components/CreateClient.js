@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { api } from '../api';
 
 export default function CreateClient({ onCreated }) {
   const [u, setU] = useState({
@@ -16,7 +16,7 @@ export default function CreateClient({ onCreated }) {
     e.preventDefault();
     setErr('');
     try {
-      await axios.post('/users/', u, cfg);
+      await api.post('/users/', u, cfg);
       setU({ username: '', password: '', role: 'client' });
       onCreated();
     } catch (error) {
