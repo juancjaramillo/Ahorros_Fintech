@@ -1,4 +1,3 @@
-# backend/Dockerfile  (versión corregida)
 FROM python:3.12-slim
 
 # 1) Directorio de trabajo DENTRO del contenedor
