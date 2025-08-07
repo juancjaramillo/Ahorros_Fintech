@@ -1,7 +1,7 @@
 // frontend/src/components/AdminDashboard.js
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { api } from "../api"; 
 import { useNavigate } from 'react-router-dom';
 
 import CreateClient     from './CreateClient';
@@ -22,19 +22,19 @@ export default function AdminDashboard() {
 
   // 1) Listar solo los usuarios con role==='client'
   const fetchClients = async () => {
-    const resp = await axios.get('/users/', cfg);
+    const resp = await api.get('/users/', cfg);
     setClients(resp.data.filter(u => u.role === 'client'));
   };
 
   // 2) Al elegir un cliente, traigo sus cuentas
   const fetchAccounts = async userId => {
-    const resp = await axios.get(`/accounts/?user_id=${userId}`, cfg);
+    const resp = await api.get(`/accounts/?user_id=${userId}`, cfg);
     setAccounts(resp.data);
   };
 
   // 3) Para el admin, trae **todas** las transacciones
   const fetchTransactions = async () => {
-    const resp = await axios.get('/transactions/all', cfg);
+    const resp = await api.get('/transactions/all', cfg);
     setTxs(resp.data);
   };
 
