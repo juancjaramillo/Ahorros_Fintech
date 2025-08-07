@@ -1,0 +1,22 @@
+# .github/workflows/deploy-frontend.yml
+name: Deploy React to Amplify
+on:
+  push:
+    paths:
+      - "frontend/**"
+      - ".github/workflows/deploy-frontend.yml"
+
+jobs:
+  amplify:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Amplify CLI
+      run: npm install -g @aws-amplify/cli
+
+    - name: Trigger Amplify build
+      run: |
+        amplify-hosting-deploy \
+          --app-id <AMPLIFY_APP_ID> \
+          --branch main
