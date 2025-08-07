@@ -1,0 +1,19 @@
+# Dependencias y build locales
+node_modules
+frontend/node_modules
+frontend/build
+backend/__pycache__
+backend/venv
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+*.log
+
+# Archivos y carpetas de control de versiones
+.git
+.gitignore
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
