@@ -1,6 +1,6 @@
 // TransactionForm.js
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { api } from "../api"; 
 
 export default function TransactionForm({ type, accounts = [], onUpdated }) {
   const [accountId, setAccountId] = useState("");
@@ -20,7 +20,7 @@ export default function TransactionForm({ type, accounts = [], onUpdated }) {
     e.preventDefault();
     setErr("");
     try {
-      await axios.post(
+      await api.post(
         `/accounts/${type}`,
         { account_id: Number(accountId), amount: Number(amount) },
         cfg

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { api } from "../api"; 
 import { useNavigate } from 'react-router-dom';
 
 export default function ClientLogin() {
@@ -12,7 +12,7 @@ export default function ClientLogin() {
     setErr('');
     console.log('Intentando login client:', u);
     try {
-      const { data } = await axios.post('/auth/login', u);
+      const { data } = await api.post('/auth/login', u);
       console.log('Token recibido:', data.access_token);
       localStorage.setItem('token', data.access_token);
       nav('/client');
