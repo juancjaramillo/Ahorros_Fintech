@@ -13,7 +13,7 @@
   - [Diagrama de despliegue ](#diagrama-de-despliegue)
 - [Estructura del proyecto](#estructura-del-proyecto)
 - [Diseño de base de datos](#diseño-de-base-de-datos)
-  - [ERD (Mermaid)](#erd-mermaid)
+  - [ERD](#erd-mermaid)
   - [DDL de referencia](#ddl-de-referencia)
 - [API (endpoints principales)](#api-endpoints-principales)
 - [Variables de entorno](#variables-de-entorno)
@@ -77,7 +77,7 @@ Ahorros_Fintech/
 
 ## Diseño de base de datos
 
-### ERD (Mermaid)
+### ERD 
 ```mermaid
 erDiagram
   USERS ||--o{ ACCOUNTS : tiene
