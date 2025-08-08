@@ -9,8 +9,8 @@
 ## Índice
 - [Visión general](#visión-general)
 - [Arquitectura](#arquitectura)
-  - [Diagrama de alto nivel (imagen)](#diagrama-de-alto-nivel-imagen)
-  - [Diagrama de despliegue (Mermaid)](#diagrama-de-despliegue-mermaid)
+  - [Diagrama de alto nivel ](#diagrama-de-alto-nivel-imagen)
+  - [Diagrama de despliegue ](#diagrama-de-despliegue)
 - [Estructura del proyecto](#estructura-del-proyecto)
 - [Diseño de base de datos](#diseño-de-base-de-datos)
   - [ERD (Mermaid)](#erd-mermaid)
@@ -37,7 +37,7 @@ La aplicación permite **crear cuentas de ahorro**, **depositar**, **retirar** y
 
 ## Arquitectura
 
-### Diagrama de alto nivel (imagen)
+### Diagrama de alto nivel 
 
 ![Dashboard Admin](docs/screenshots/Mermaid1.png)
 
@@ -69,7 +69,7 @@ Ahorros_Fintech/
 │  │  └─ ...
 │  ├─ package.json
 │  └─ .env.production
-├─ docker-compose.yml        # (opcional) despliegue con Docker
+├─ docker-compose.yml        # Despliegue con Docker
 └─ README.md
 ```
 
@@ -260,26 +260,30 @@ sudo chown -R ubuntu:www-data build && sudo chmod -R 755 build
 ```nginx
 # /etc/nginx/sites-available/ahorro
 server {
-  listen 80 default_server;
-  server_name _;
+    listen 80 default_server;
+    server_name _;
 
-  root /home/ubuntu/Ahorros_Fintech/frontend/build;
-  index index.html;
+    root /home/ubuntu/Ahorros_Fintech/frontend/build;
+    index index.html;
 
-  location /api/ {
-    proxy_pass http://127.0.0.1:8000/;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-  }
+    # API → FastAPI
+    location /api/ {
+        proxy_pass http://127.0.0.1:8000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
 
-  location /api/docs  { proxy_pass http://127.0.0.1:8000/docs; }
-  location /api/redoc { proxy_pass http://127.0.0.1:8000/redoc; }
+    # Swagger / Redoc
+    location /api/docs  { proxy_pass http://127.0.0.1:8000/docs; }
+    location /api/redoc { proxy_pass http://127.0.0.1:8000/redoc; }
 
-  location / {
-    try_files $uri $uri/ /index.html;
-  }
+    # React SPA
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
 }
+
 ```
 ```bash
 sudo ln -sf /etc/nginx/sites-available/ahorro /etc/nginx/sites-enabled/ahorro
@@ -371,4 +375,4 @@ sudo systemctl restart nginx
 ---
 
 ## Licencia
-Uso académico para prueba técnica (recomendado MIT).
+Uso para prueba técnica (recomendado MIT).
