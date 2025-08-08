@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   backend:
     build:
@@ -6,11 +8,18 @@ services:
     container_name: ahorro-api
     restart: always
     environment:
-      - DATABASE_URL=sqlite:////data/ahorros.db 
+      - DATABASE_URL=sqlite:////data/ahorros.db
       - SECRET_KEY=gbP95kts-z2j1sGq_wp5aZfxvBPnImS8xcp4Wnn0Jd8
     volumes:
       - ./ahorros.db:/data/ahorros.db
+    expose:
+      - "8000"        # visible para otros servicios (nginx), no publica al host
     networks: [ web ]
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8000/docs >/dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
 
   nginx:
     build:
@@ -18,13 +27,12 @@ services:
       dockerfile: nginx/Dockerfile
     container_name: ahorro-web
     restart: always
-    depends_on: [ backend ]
+    depends_on:
+      backend:
+        condition: service_healthy
     ports:
       - "80:80"
     networks: [ web ]
-
-volumes:
-  db-data:
 
 networks:
   web:

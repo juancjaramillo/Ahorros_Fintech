@@ -1,37 +1,26 @@
-<<<<<<< HEAD
-FROM python:3.12-slim AS backend
+FROM python:3.12-slim
 
-# Evitar archivos .pyc y asegurar logs sin buffer
+# Evitar .pyc y logs buferizados
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Directorio de trabajo
-=======
-FROM python:3.12-slim
->>>>>>> 53dba3d (Initial commit: Backend (FastAPI + SQLite) + Frontend (React) + Docker + README)
+# Directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Instalar dependencias del sistema si es necesario (compilación)
+# Paquetes del sistema (solo si alguna lib de Python compila)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+ && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copiar requirements primero para aprovechar cache
+# 1) Copiamos primero requirements para aprovechar caché
 COPY backend/requirements.txt .
 
-# Instalar dependencias de Python
+# 2) Instalamos dependencias
 RUN pip install --no-cache-dir -r requirements.txt
-<<<<<<< HEAD
 
-# Copiar solo el código del backend
+# 3) Copiamos SOLO el código del backend (no todo el repo)
 COPY backend/ .
 
-# Exponer puerto del backend
+# 4) Exponemos puerto y arrancamos Uvicorn
 EXPOSE 8000
-
-# Arrancar FastAPI
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-=======
-COPY . .
-CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
->>>>>>> 53dba3d (Initial commit: Backend (FastAPI + SQLite) + Frontend (React) + Docker + README)
