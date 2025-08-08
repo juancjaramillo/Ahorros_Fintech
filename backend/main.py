@@ -11,7 +11,7 @@ app = FastAPI(
     description="API segura para manejo de cuentas de ahorro",
     docs_url="/api/docs",              # <── importante
     openapi_url="/api/openapi.json",   # <── importante
-    redoc_url=None,
+    redoc_url=None, 
 )
 
 ENV = os.getenv("ENV", "prod")
