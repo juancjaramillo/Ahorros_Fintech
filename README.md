@@ -38,27 +38,13 @@ La aplicación permite **crear cuentas de ahorro**, **depositar**, **retirar** y
 ## Arquitectura
 
 ### Diagrama de alto nivel (imagen)
-> Coloca tu imagen real si la tienes. Aquí un placeholder:
-![Dashboard Admin](docs/screenshots/admin_dashboard.png)
+
+![Dashboard Admin](docs/screenshots/Mermaid1.png)
 
 ### Diagrama de despliegue (Mermaid)
-> **Importante:** Mermaid no acepta comillas en el texto de las flechas. Usa `-->|texto|-->`.  
-> También evitamos reutilizar el mismo ID para **nodo** y **subgraph** (por eso usamos `EC2Cluster` como contenedor).
+ 
+![Diagrama de despliegue](docs/screenshots/Mermaid2.png)
 
-```mermaid
-flowchart LR
-  Dev[Dev Laptop] -->|git push| Repo[(GitHub Repo)]
-  Repo -->|opcional CI/CD| EC2[(AWS EC2)]
-
-  subgraph EC2Cluster[EC2]
-    direction TB
-    NGINX[Nginx (host)] -->|/api| Uvicorn[Uvicorn (FastAPI)]
-    NGINX -->|/| ReactBuild[React build estático]
-    DB[(ahorros.db - SQLite)]
-  end
-
-  classDef infra fill:#eef,stroke:#555,stroke-width:1px;
-  class EC2,Repo,Dev infra;
 ```
 
 ---
