@@ -45,8 +45,6 @@ La aplicación permite **crear cuentas de ahorro**, **depositar**, **retirar** y
  
 ![Diagrama de despliegue](docs/screenshots/Mermaid2.png)
 
-```
-
 ---
 
 ## Estructura del proyecto
