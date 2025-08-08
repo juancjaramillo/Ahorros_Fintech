@@ -9,7 +9,7 @@ services:
       - DATABASE_URL=sqlite:////data/ahorros.db
       - SECRET_KEY=gbP95kts-z2j1sGq_wp5aZfxvBPnImS8xcp4Wnn0Jd8
     volumes:
-      - db-data:/data
+      - ./ahorros.db:/data/ahorros.db
     networks: [ web ]
 
   nginx:
