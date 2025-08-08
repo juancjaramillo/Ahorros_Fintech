@@ -2,7 +2,7 @@
 
 > **Qué es:** Una app para ver y mover ahorros. Dos piezas: **Página Web (React)** y **Servicio (FastAPI)** en un servidor de **AWS EC2**.  
 > **Objetivo de la prueba:** que funcione en internet y que **se pueda actualizar fácil** (“redeploy”).  
-> **Público:** No técnico (reclutamiento, psicología, managers). Lenguaje claro, sin jerga.
+
 
 ---
 
@@ -31,7 +31,7 @@
 ## Visión general
 La aplicación permite **crear cuentas de ahorro**, **depositar**, **retirar** y **consultar movimientos**.  
 - **Admin:** gestiona usuarios y cuentas, ve todas las transacciones.  
-- **Cliente:** ve sus cuentas, deposita y retira.
+- **Cliente:** ve sus cuentas, depositos y retiros.
 
 ---
 
@@ -41,7 +41,7 @@ La aplicación permite **crear cuentas de ahorro**, **depositar**, **retirar** y
 
 ![Dashboard Admin](docs/screenshots/Mermaid1.png)
 
-### Diagrama de despliegue (Mermaid)
+### Diagrama de despliegue
  
 ![Diagrama de despliegue](docs/screenshots/Mermaid2.png)
 
@@ -111,7 +111,7 @@ erDiagram
 ```
 
 ### DDL de referencia
-> Tabla de ejemplo para SQLite/Postgres (campos mínimos).
+> Tabla de ejemplo para SQLite/Postgres.
 
 ```sql
 CREATE TABLE users (
