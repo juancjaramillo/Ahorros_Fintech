@@ -388,4 +388,4 @@ sudo systemctl restart nginx
 ---
 
 ## Licencia
-Uso académico para prueba técnica (recomendado MIT). 
+Uso académico para prueba técnica (recomendado MIT).
