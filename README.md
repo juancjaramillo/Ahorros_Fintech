@@ -167,7 +167,7 @@ CREATE TABLE transactions (
 **Backend (`backend/.env`):**
 ```ini
 DATABASE_URL=sqlite:////home/ubuntu/Ahorros_Fintech/ahorros.db
-SECRET_KEY=gbP95kts-z2j1sGq_wp5aZfxvBPnImS8xcp4Wnn0Jd8
+SECRET_KEY=<tu llave>
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=60
 ```
@@ -187,7 +187,7 @@ cd backend
 python -m venv venv
 # Linux/Mac
 source venv/bin/activate
-# Windows (PowerShell): .env\Scripts\Activate.ps1
+# Windows (PowerShell): .env\Scripts\Activate.ps1
 
 pip install --upgrade pip
 pip install -r requirements.txt
@@ -199,7 +199,7 @@ npm install
 npm start   # abre http://localhost:3000
 ```
 
-**Semilla (crear datos de prueba):**
+**Seed (crear datos de prueba):**
 ```bash
 # estando en backend con el venv activado
 python seed.py
@@ -221,7 +221,7 @@ cd Ahorros_Fintech/backend
 python3 -m venv venv && source venv/bin/activate
 pip install --upgrade pip && pip install -r requirements.txt
 echo "DATABASE_URL=sqlite:////home/ubuntu/Ahorros_Fintech/ahorros.db" > .env
-echo "SECRET_KEY=gbP95kts-z2j1sGq_wp5aZfxvBPnImS8xcp4Wnn0Jd8" >> .env
+echo "SECRET_KEY=TU LLAVE" >> .env
 python seed.py
 deactivate
 ```
@@ -237,7 +237,7 @@ After=network.target
 User=ubuntu
 WorkingDirectory=/home/ubuntu/Ahorros_Fintech/backend
 Environment="DATABASE_URL=sqlite:////home/ubuntu/Ahorros_Fintech/ahorros.db"
-Environment="SECRET_KEY=gbP95kts-z2j1sGq_wp5aZfxvBPnImS8xcp4Wnn0Jd8"
+Environment="SECRET_KEY=TU LLAVE"
 ExecStart=/home/ubuntu/Ahorros_Fintech/backend/venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000
 Restart=always
 RestartSec=3
