@@ -366,8 +366,7 @@ sudo systemctl restart nginx
 - **Dashboard Cliente**  
   ![Dashboard Cliente](docs/screenshots/client_dashboard.png)
 
-- **Swagger**  
-  ![Swagger](docs/screenshots/swagger.png)
+
 
 ---
 
