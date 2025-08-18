@@ -1,0 +1,11 @@
+﻿# Ignore big/binary & build artifacts
+ahorro_app.zip
+*.zip
+*.db
+.env
+frontend/build/
+node_modules/
+backend/venv/
+.venv/
+__pycache__/
+*.pyc
