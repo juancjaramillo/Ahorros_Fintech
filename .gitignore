@@ -9,3 +9,12 @@ backend/venv/
 .venv/
 __pycache__/
 *.pyc
+*.zip
+*.db
+.env
+frontend/build/
+node_modules/
+backend/venv/
+.venv/
+__pycache__/
+*.pyc
