@@ -9,9 +9,9 @@ def run_seed() -> None:
 
     db: Session = SessionLocal()
     try:
-        admin   = create_user(db, "admin",   "Admin123",  "admin")
-        client1 = create_user(db, "client1", "Client123", "client")
-        client2 = create_user(db, "client2", "Client123", "client")
+        admin   = create_user(db, "admin",   "admin123",  "admin")
+        client1 = create_user(db, "client1", "client123", "client")
+        client2 = create_user(db, "client2", "client123", "client")
         print("✓ Usuarios creados: admin, client1, client2")
 
         acc1 = create_account(db, AccountCreate(user_id=client1.id, number="0001", initial_balance=5000.0))

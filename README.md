@@ -162,8 +162,8 @@ CREATE TABLE transactions (
 | POST | `/transactions/withdraw` | Retiro | Admin/Cliente |
 
 **Usuarios de ejemplo (seed):**
-- Admin: `admin` / `Admin123`
-- Cliente: `client1` / `Client123`
+- Admin: `admin` / `amin123`
+- Cliente: `client1` / `client123`
 
 ---
 

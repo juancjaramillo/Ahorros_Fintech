@@ -6,7 +6,7 @@ import { api } from "../api";
 export default function AdminLogin() {
   const isDev = process.env.NODE_ENV === "development";
   const [username, setUsername] = useState(isDev ? "admin" : "");
-  const [password, setPassword] = useState(isDev ? "Admin123" : "");
+  const [password, setPassword] = useState(isDev ? "admin123" : "");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
