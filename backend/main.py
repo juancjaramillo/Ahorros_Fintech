@@ -14,7 +14,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Crea tablas si no existen
+
 Base.metadata.create_all(bind=engine)
 
 # Healthcheck

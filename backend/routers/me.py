@@ -6,7 +6,7 @@ from sqlalchemy import select
 from backend.database import get_db
 from backend.models import Account, Transaction, User
 from backend.schemas import AccountOut, TransactionOut
-from backend.security import get_current_client  # asegúrate de tener este dep.
+from backend.security import get_current_client  
 
 router = APIRouter(prefix="/api/me", tags=["me"])
 

@@ -1,4 +1,3 @@
-// src/components/ClientLogin.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api";
@@ -29,7 +28,10 @@ export default function ClientLogin() {
   return (
     <div>
 
-      
+       <div className="d-flex justify-content-start" style={{ maxWidth: 350, margin: "1rem auto 0" }}>           
+        <a href="/" className="btn btn-outline-secondary btn-sm ms-2">← Volver</a>       
+      </div>
+        
 
       <form onSubmit={submit} style={{ maxWidth: 350, margin: "2rem auto" }}>
         <h4>Cliente</h4>
