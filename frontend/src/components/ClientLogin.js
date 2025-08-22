@@ -17,7 +17,7 @@ export default function ClientLogin() {
       const token = data?.access_token;
       if (token) {
         localStorage.setItem("token", token);
-        // El interceptor en api.js añadirá Authorization automáticamente
+       
       }
       navigate("/client");
     } catch (err) {
@@ -28,6 +28,15 @@ export default function ClientLogin() {
 
   return (
     <div>
+
+      {/* Botón ← Volver (SPA) */}
+      <div className="d-flex justify-content-start" style={{ maxWidth: 350, margin: "1rem auto 0" }}>
+       
+       
+        <a href="/" className="btn btn-outline-secondary btn-sm ms-2">← Volver</a>
+       
+      </div>
+
       <form onSubmit={submit} style={{ maxWidth: 350, margin: "2rem auto" }}>
         <h4>Cliente</h4>
 
