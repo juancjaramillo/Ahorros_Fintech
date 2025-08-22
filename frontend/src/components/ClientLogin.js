@@ -30,12 +30,7 @@ export default function ClientLogin() {
     <div>
 
       {/* Botón ← Volver (SPA) */}
-      <div className="d-flex justify-content-start" style={{ maxWidth: 350, margin: "1rem auto 0" }}>
-       
-       
-        <a href="/" className="btn btn-outline-secondary btn-sm ms-2">← Volver</a>
-       
-      </div>
+ 
 
       <form onSubmit={submit} style={{ maxWidth: 350, margin: "2rem auto" }}>
         <h4>Cliente</h4>
