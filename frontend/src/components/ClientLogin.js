@@ -29,8 +29,7 @@ export default function ClientLogin() {
   return (
     <div>
 
-      {/* Botón ← Volver (SPA) */}
- 
+      
 
       <form onSubmit={submit} style={{ maxWidth: 350, margin: "2rem auto" }}>
         <h4>Cliente</h4>
